@@ -2,25 +2,19 @@ import React from "react";
 
 // let fruits = ["Banana", "Apple", "Mango", "Orange"];
 
-// array of objects
-let fruits = [
-  { id: 1, name: "Apple", calories: 95 },
-  { id: 2, name: "Banana", calories: 45 },
-  { id: 3, name: "Mango", calories: 105 },
-  { id: 4, name: "Orange", calories: 37 },
-];
-function list() {
+function List(props) {
+  const itemList = props.item;
+  const category = props.category;
   //   Array of list items
   // ->  Convert an array into list
-
-  const listItems = fruits.map((fruit) => (
+  const listItems = itemList.map((fruit) => (
     <li key={fruit.id}>
       {fruit.name}: &nbsp; <b>{fruit.calories}</b>
     </li>
   ));
 
   //   filter array of objetcs
-  const lowCalFruit = fruits.filter((fruit) => fruit.calories < 100);
+  const lowCalFruit = itemList.filter((fruit) => fruit.calories < 100);
 
   const lowCalFruitList = lowCalFruit.map((lowCalFruits) => (
     <li key={lowCalFruits.id}>
@@ -29,7 +23,11 @@ function list() {
   ));
 
   // return array of list using list tag
-  return <ul>{lowCalFruitList}</ul>;
+  return (
+    <>
+      <h2>Category: {category}</h2> <ul>{listItems}</ul>
+    </>
+  );
 }
 
-export default list;
+export default List;
